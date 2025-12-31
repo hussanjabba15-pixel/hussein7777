@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مرسوم جمهوري - تهنئة رأس السنة</title>
+    <title>مرسوم جمهوري </title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
         
@@ -15,40 +15,40 @@
         
         .music-control {
             position: fixed;
-            bottom: 10px;
-            left: 10px;
+            bottom: 20px;
+            left: 20px;
             z-index: 1000;
             background: linear-gradient(135deg, #d4af37, #f4e5c3);
             border: 2px solid #c9a961;
             border-radius: 50%;
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
             transition: all 0.3s ease;
-            opacity: 0.4;
+            opacity: 0.3;
         }
         
         .music-control:hover {
             opacity: 1;
-            transform: scale(1.1);
+            transform: scale(1.15);
             box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
         }
         
         .music-control.playing {
-            animation: pulse-music 1s ease-in-out infinite;
+            animation: pulse-music 1.5s ease-in-out infinite;
         }
         
         @keyframes pulse-music {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.08); opacity: 0.6; }
         }
         
         .music-icon {
-            font-size: 16px;
+            font-size: 18px;
             color: #1a1a2e;
         }
         
@@ -111,10 +111,11 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
+            align-items: flex-start;
+            padding: 40px 20px;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
         
         body::before {
@@ -169,6 +170,7 @@
             max-width: 900px;
             width: 100%;
             padding: 60px 50px;
+            margin: 20px auto;
             border-radius: 20px;
             box-shadow: 
                 0 30px 90px rgba(0, 0, 0, 0.3),
@@ -359,7 +361,7 @@
     </div>
     
     <audio id="backgroundMusic" loop autoplay>
-        <source src="music.mp3" type="audio/mpeg">
+        <source src="music.m4a" type="audio/mp4">
     </audio>
     
     <div class="music-control" id="musicControl">
@@ -386,33 +388,21 @@
                 بسم الله الرحمن الرحيم
             </div>
             
-            <div class="article">
-                <div class="article-title">المادة الأولى:</div>
-                <p>
-                    أنا السيد <span class="name">حسين جبار صالح</span>، وبموجب الصلاحيات المخولة لي، وإيماناً منّي بأهمية هذه المناسبة السعيدة، أتقدم بأسمى آيات التهاني والتبريكات إلى كافة الأهل والأصدقاء والأحبة بمناسبة حلول العام الميلادي الجديد 2026.
-                </p>
-            </div>
+            <p style="margin-bottom: 25px; line-height: 2.2;">
+                أنا السيد <span class="name">حسين جبار صالح</span>، وبموجب الصلاحيات المخولة لي، وإيماناً منّي بأهمية هذه المناسبة السعيدة، أتقدم بأسمى آيات التهاني والتبريكات إلى كافة الأهل والأصدقاء والأحبة بمناسبة حلول العام الميلادي الجديد 2026.
+            </p>
             
-            <div class="article">
-                <div class="article-title">المادة الثانية:</div>
-                <p>
-                    يُعلن رسمياً أن هذا العام سيكون عام الإنجازات والنجاحات الباهرة، عام تحقيق الأحلام والطموحات، وعام السعادة والازدهار لكل من نحمل لهم المودة والاحترام في قلوبنا.
-                </p>
-            </div>
+            <p style="margin-bottom: 25px; line-height: 2.2;">
+                يُعلن رسمياً أن هذا العام سيكون عام الإنجازات والنجاحات الباهرة، عام تحقيق الأحلام والطموحات، وعام السعادة والازدهار لكل من نحمل لهم المودة والاحترام في قلوبنا.
+            </p>
             
-            <div class="article">
-                <div class="article-title">المادة الثالثة:</div>
-                <p>
-                    نُقر بأن العام المنصرم قد حمل معه الكثير من الذكريات الجميلة والدروس القيّمة، ونتطلع بكل ثقة وتفاؤل إلى عام جديد مليء بالأمل والعطاء والإنجازات المشرّفة التي ترفع الرأس عالياً.
-                </p>
-            </div>
+            <p style="margin-bottom: 25px; line-height: 2.2;">
+                نُقر بأن العام المنصرم قد حمل معه الكثير من الذكريات الجميلة والدروس القيّمة، ونتطلع بكل ثقة وتفاؤل إلى عام جديد مليء بالأمل والعطاء والإنجازات المشرّفة التي ترفع الرأس عالياً.
+            </p>
             
-            <div class="article">
-                <div class="article-title">المادة الرابعة:</div>
-                <p>
-                    نتمنى لكم جميعاً عاماً سعيداً مباركاً، عاماً يفيض بالصحة والعافية، بالرزق الوفير والبركة في العمر، وبتحقيق كل ما تصبون إليه من آمال وأماني. كل عام وأنتم بألف خير، وكل عام ونحن جميعاً في تقدم ونجاح مستمر.
-                </p>
-            </div>
+            <p style="margin-bottom: 25px; line-height: 2.2;">
+                نتمنى لكم جميعاً عاماً سعيداً مباركاً، عاماً يفيض بالصحة والعافية، بالرزق الوفير والبركة في العمر، وبتحقيق كل ما تصبون إليه من آمال وأماني. كل عام وأنتم بألف خير، وكل عام ونحن جميعاً في تقدم ونجاح مستمر.
+            </p>
         </div>
         
         <div class="signature-section">
