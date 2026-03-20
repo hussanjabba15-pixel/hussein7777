@@ -3,486 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مرسوم جمهوري </title>
+    <title>تهنئة خاصة | Blue Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        .music-control {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 1000;
-            background: linear-gradient(135deg, #d4af37, #f4e5c3);
-            border: 2px solid #c9a961;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-            transition: all 0.3s ease;
-            opacity: 0.3;
-        }
-        
-        .music-control:hover {
-            opacity: 1;
-            transform: scale(1.15);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
-        }
-        
-        .music-control.playing {
-            animation: pulse-music 1.5s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-music {
-            0%, 100% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.08); opacity: 0.6; }
-        }
-        
-        .music-icon {
-            font-size: 18px;
-            color: #1a1a2e;
-        }
-        
-        .welcome-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .welcome-content {
-            text-align: center;
-            color: #fff;
-        }
-        
-        .welcome-title {
-            font-family: 'Amiri', serif;
-            font-size: 48px;
-            font-weight: 700;
-            color: #d4af37;
-            margin-bottom: 30px;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        }
-        
-        .enter-button {
-            font-family: 'Amiri', serif;
-            font-size: 24px;
-            font-weight: 700;
-            padding: 20px 60px;
-            background: linear-gradient(135deg, #d4af37, #f4e5c3);
-            color: #1a1a2e;
-            border: 3px solid #c9a961;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-        }
-        
-        .enter-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+        :root { 
+            --primary-blue: #00d2ff; 
+            --deep-blue: #3a7bd5;
+            --dark-bg: #060b19;
         }
         
         body {
-            font-family: 'Amiri', serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 40px 20px;
-            position: relative;
-            overflow-x: hidden;
-            overflow-y: auto;
+            margin: 0; font-family: 'Cairo', sans-serif;
+            background: var(--dark-bg);
+            background: radial-gradient(circle at bottom, #001f3f 0%, #00050a 100%);
+            height: 100vh; display: flex; justify-content: center; align-items: center;
+            color: white; overflow: hidden; position: relative;
         }
+
+        /* خلفية النجوم المتحركة */
+        #stars-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 210, 255, 0.3); 
+            padding: 45px 30px;
+            border-radius: 40px; width: 85%; max-width: 400px; text-align: center;
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.15);
+            animation: slideUp 1s ease-out;
+        }
+
+        .moon-icon { font-size: 70px; margin-bottom: 20px; filter: drop-shadow(0 0 20px var(--primary-blue)); animation: float 3s ease-in-out infinite; }
         
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-            animation: pulse 4s ease-in-out infinite;
+        h1 { 
+            font-size: 1.7rem; margin-bottom: 20px; 
+            background: linear-gradient(to left, #fff, var(--primary-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
+
+        p { 
+            font-size: 1.2rem; line-height: 1.8; margin-bottom: 25px; 
+            color: #e0f7fa; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
-        
-        .fireworks {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
+
+        .btn-blue {
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+            color: white; border: none; padding: 15px 45px;
+            border-radius: 15px; font-size: 1.1rem; font-weight: 800; cursor: pointer;
+            transition: 0.4s; box-shadow: 0 10px 25px rgba(0, 210, 255, 0.3);
         }
-        
-        .firework {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            animation: explode 1.5s ease-out forwards;
-        }
-        
-        @keyframes explode {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--tx), var(--ty)) scale(0);
-                opacity: 0;
-            }
-        }
-        
-        .decree-container {
-            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-            max-width: 900px;
-            width: 100%;
-            padding: 60px 50px;
-            margin: 20px auto;
-            border-radius: 20px;
-            box-shadow: 
-                0 30px 90px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            position: relative;
-            z-index: 10;
-            border: 3px solid #d4af37;
-            animation: fadeInScale 1s ease-out;
-        }
-        
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.9) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-        
-        .decree-border {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-            border: 2px solid #c9a961;
-            border-radius: 15px;
-            pointer-events: none;
-        }
-        
-        .emblem {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .emblem-circle {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, #d4af37 0%, #f4e5c3 50%, #d4af37 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-            animation: rotate 20s linear infinite;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 3px double #d4af37;
-            padding-bottom: 30px;
-        }
-        
-        .decree-number {
-            font-size: 18px;
-            color: #c9252c;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-        
-        .decree-title {
-            font-size: 36px;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .decree-subtitle {
-            font-size: 22px;
-            color: #555;
-            font-weight: 400;
-        }
-        
-        .content {
-            line-height: 2.2;
-            font-size: 20px;
-            color: #2c3e50;
-            text-align: justify;
-            margin-bottom: 40px;
-        }
-        
-        .opening {
-            font-size: 24px;
-            font-weight: 700;
-            color: #c9252c;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .article {
-            margin-bottom: 25px;
-            padding: 20px;
-            background: linear-gradient(to left, rgba(212, 175, 55, 0.05), transparent);
-            border-right: 4px solid #d4af37;
-            border-radius: 5px;
-        }
-        
-        .article-title {
-            font-weight: 700;
-            color: #c9252c;
-            margin-bottom: 15px;
-            font-size: 22px;
-        }
-        
-        .signature-section {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px solid #d4af37;
-        }
-        
-        .signature-line {
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 22px;
-            font-weight: 700;
-            color: #1a1a2e;
-        }
-        
-        .name {
-            font-size: 28px;
-            color: #c9252c;
-        }
-        
-        .date {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 18px;
-            color: #555;
-            font-weight: 600;
-        }
-        
-        .seal {
-            width: 150px;
-            height: 150px;
-            margin: 30px auto 0;
-            background: radial-gradient(circle, #d4af37 0%, #c9a961 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: 700;
-            color: #fff;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
-            border: 5px solid #f4e5c3;
-            animation: pulse-seal 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-seal {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        @media (max-width: 768px) {
-            .decree-container {
-                padding: 40px 30px;
-            }
-            
-            .decree-title {
-                font-size: 28px;
-            }
-            
-            .content {
-                font-size: 18px;
-            }
-        }
+        .btn-blue:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0, 210, 255, 0.5); }
+
+        .hidden { display: none; }
+
+        .signature { font-size: 1.1rem; color: var(--primary-blue); font-weight: 800; margin-bottom: 5px; display: block; }
+        .divider { height: 2px; width: 50px; background: var(--primary-blue); margin: 15px auto; border-radius: 2px; }
+
+        /* أنيميشن */
+        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; animation: twinkle var(--duration) infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
     </style>
 </head>
 <body>
-    <div class="welcome-overlay" id="welcomeOverlay">
-        <div class="welcome-content">
-            <h1 class="welcome-title">🎊 أهلاً وسهلاً 🎊</h1>
-            <button class="enter-button" id="enterButton">ادخل واستمتع 🎵</button>
+
+    <div id="stars-container"></div>
+
+    <div id="main-content">
+        <div id="step1" class="card">
+            <div class="moon-icon">🌙</div>
+            <h1>تهنئة من نوع خاص..</h1>
+            <span class="signature">بلمسة زرقاء من حسين</span>
+            <div class="divider"></div>
+            <button class="btn-blue" onclick="startExperience()">اكتشف المفاجأة</button>
+        </div>
+
+        <div id="step2" class="card hidden">
+            <h1>عيد مبارك وسعيد ✨</h1>
+            <p id="typewriter"></p>
+            <button id="nextBtn" class="btn-blue hidden" onclick="showMusicPage()">لحن العيد 🎵</button>
+        </div>
+
+        <div id="step3" class="card hidden">
+            <h1>هدوء وموسيقى لقلبك 🎧</h1>
+            <audio id="bgMusic" controls>
+                <source src="blue-song.mp3" type="audio/mpeg">
+            </audio>
+            <span class="signature">من حسين</span>
+            <div class="divider"></div>
+            <button class="btn-blue" onclick="location.reload()" style="background: rgba(255,255,255,0.1); font-size: 0.9rem;">إعادة العرض</button>
         </div>
     </div>
-    
-    <audio id="backgroundMusic" loop autoplay>
-        <source src="music.m4a" type="audio/mp4">
-    </audio>
-    
-    <div class="music-control" id="musicControl">
-        <div class="music-icon">🎵</div>
-    </div>
-    
-    <div class="fireworks" id="fireworks"></div>
-    
-    <div class="decree-container">
-        <div class="decree-border"></div>
-        
-        <div class="emblem">
-            <div class="emblem-circle">⭐</div>
-        </div>
-        
-        <div class="header">
-            <div class="decree-number">مرسوم رقم (2026/1)</div>
-            <h1 class="decree-title">مرسوم جمهوري</h1>
-            <p class="decree-subtitle">بمناسبة حلول العام الجديد 2026</p>
-        </div>
-        
-        <div class="content">
-            <div class="opening">
-                بسم الله الرحمن الرحيم
-            </div>
-            
-            <p style="margin-bottom: 25px; line-height: 2.2;">
-                أنا السيد <span class="name">حسين جبار صالح</span>، وبموجب الصلاحيات المخولة لي، وإيماناً منّي بأهمية هذه المناسبة السعيدة، أتقدم بأسمى آيات التهاني والتبريكات إلى كافة الأهل والأصدقاء والأحبة بمناسبة حلول العام الميلادي الجديد 2026.
-            </p>
-            
-            <p style="margin-bottom: 25px; line-height: 2.2;">
-                يُعلن رسمياً أن هذا العام سيكون عام الإنجازات والنجاحات الباهرة، عام تحقيق الأحلام والطموحات، وعام السعادة والازدهار لكل من نحمل لهم المودة والاحترام في قلوبنا.
-            </p>
-            
-            <p style="margin-bottom: 25px; line-height: 2.2;">
-                نُقر بأن العام المنصرم قد حمل معه الكثير من الذكريات الجميلة والدروس القيّمة، ونتطلع بكل ثقة وتفاؤل إلى عام جديد مليء بالأمل والعطاء والإنجازات المشرّفة التي ترفع الرأس عالياً.
-            </p>
-            
-            <p style="margin-bottom: 25px; line-height: 2.2;">
-                نتمنى لكم جميعاً عاماً سعيداً مباركاً، عاماً يفيض بالصحة والعافية، بالرزق الوفير والبركة في العمر، وبتحقيق كل ما تصبون إليه من آمال وأماني. كل عام وأنتم بألف خير، وكل عام ونحن جميعاً في تقدم ونجاح مستمر.
-            </p>
-        </div>
-        
-        <div class="signature-section">
-            <div class="signature-line">
-                صدر بتوقيع
-            </div>
-            <div class="signature-line name">
-                السيد حسين جبار صالح
-            </div>
-            <div class="date">
-                بتاريخ: 31 ديسمبر 2025
-            </div>
-            <div class="seal">
-                الختم<br>الرسمي<br>2026
-            </div>
-        </div>
-    </div>
-    
+
     <script>
-        const music = document.getElementById('backgroundMusic');
-        const musicControl = document.getElementById('musicControl');
-        
-        // تشغيل الموسيقى تلقائياً عند تحميل الصفحة
-        window.addEventListener('load', function() {
-            music.play().then(() => {
-                musicControl.classList.add('playing');
-            }).catch(e => {
-                // المتصفحات تحتاج تفاعل من المستخدم أولاً
-                document.body.addEventListener('click', function playOnClick() {
-                    music.play();
-                    musicControl.classList.add('playing');
-                    document.body.removeEventListener('click', playOnClick);
-                }, { once: true });
-            });
-        });
-        
-        musicControl.addEventListener('click', function(e) {
-            e.stopPropagation();
-            if (music.paused) {
-                music.play();
-                musicControl.classList.add('playing');
+        const message = "عيد فطر مبارك.. أتمنى أن تكون أيامك هادئة وجميلة مثل لونك المفضل. كل عام وأنت بألف خير، يا رب تكون دائماً في أعلى المراتب وبكل سعادة وراحة بال. 💙";
+        let charIndex = 0;
+
+        function startExperience() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+            typeWriter();
+        }
+
+        function typeWriter() {
+            const display = document.getElementById("typewriter");
+            if (charIndex < message.length) {
+                display.innerHTML += message.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 60);
             } else {
-                music.pause();
-                musicControl.classList.remove('playing');
-            }
-        });
-        
-        function createFirework() {
-            const fireworks = document.getElementById('fireworks');
-            const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#f7b731', '#5f27cd'];
-            
-            const x = Math.random() * window.innerWidth;
-            const y = Math.random() * window.innerHeight * 0.5;
-            
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'firework';
-                particle.style.left = x + 'px';
-                particle.style.top = y + 'px';
-                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                const angle = (Math.PI * 2 * i) / 30;
-                const velocity = 50 + Math.random() * 50;
-                const tx = Math.cos(angle) * velocity;
-                const ty = Math.sin(angle) * velocity;
-                
-                particle.style.setProperty('--tx', tx + 'px');
-                particle.style.setProperty('--ty', ty + 'px');
-                
-                fireworks.appendChild(particle);
-                
-                setTimeout(() => particle.remove(), 1500);
+                triggerBlueConfetti();
+                document.getElementById("nextBtn").classList.remove('hidden');
             }
         }
-        
-        setInterval(createFirework, 800);
-        
-        for (let i = 0; i < 3; i++) {
-            setTimeout(createFirework, i * 300);
+
+        function showMusicPage() {
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+            document.getElementById('bgMusic').play();
+            triggerBlueConfetti();
         }
+
+        // احتفالية باللون الأزرق والأبيض
+        function triggerBlueConfetti() {
+            var duration = 4 * 1000;
+            var end = Date.now() + duration;
+            (function frame() {
+              confetti({ particleCount: 5, angle: 60, spread: 60, origin: { x: 0 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
+              confetti({ particleCount: 5, angle: 120, spread: 60, origin: { x: 1 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
+              if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+        }
+
+        // إنشاء النجوم في الخلفية
+        function initStars() {
+            const container = document.getElementById('stars-container');
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 'px';
+                star.style.width = size;
+                star.style.height = size;
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+                container.appendChild(star);
+            }
+        }
+        initStars();
     </script>
 </body>
 </html>
