@@ -3,71 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تهنئة خاصة | Blue Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&display=swap" rel="stylesheet">
+    <title>إلى يرقياتي | من حسين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root { 
             --primary-blue: #00d2ff; 
-            --deep-blue: #3a7bd5;
-            --dark-bg: #060b19;
+            --accent-blue: #3a7bd5;
         }
         
         body {
             margin: 0; font-family: 'Cairo', sans-serif;
-            background: var(--dark-bg);
-            background: radial-gradient(circle at bottom, #001f3f 0%, #00050a 100%);
+            background: #050a16;
+            background: radial-gradient(circle at center, #0a1931 0%, #02050a 100%);
             height: 100vh; display: flex; justify-content: center; align-items: center;
             color: white; overflow: hidden; position: relative;
         }
 
-        /* خلفية النجوم المتحركة */
         #stars-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
 
         .card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 210, 255, 0.3); 
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 2px solid rgba(0, 210, 255, 0.3); 
             padding: 45px 30px;
             border-radius: 40px; width: 85%; max-width: 400px; text-align: center;
-            box-shadow: 0 0 40px rgba(0, 210, 255, 0.15);
-            animation: slideUp 1s ease-out;
+            box-shadow: 0 0 50px rgba(0, 210, 255, 0.2);
+            animation: slideUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        .moon-icon { font-size: 70px; margin-bottom: 20px; filter: drop-shadow(0 0 20px var(--primary-blue)); animation: float 3s ease-in-out infinite; }
+        .moon-icon { font-size: 80px; margin-bottom: 20px; filter: drop-shadow(0 0 20px var(--primary-blue)); animation: float 3s ease-in-out infinite; }
         
         h1 { 
-            font-size: 1.7rem; margin-bottom: 20px; 
-            background: linear-gradient(to left, #fff, var(--primary-blue));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            font-weight: 800;
+            font-size: 1.8rem; margin-bottom: 15px; 
+            color: #ffffff; font-weight: 900;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        /* تنسيق كلمة يرقياتي */
+        .nickname {
+            font-size: 1.6rem;
+            color: var(--primary-blue);
+            font-weight: 900;
+            display: block;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+            letter-spacing: 1px;
         }
 
         p { 
-            font-size: 1.2rem; line-height: 1.8; margin-bottom: 25px; 
-            color: #e0f7fa; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            font-size: 1.3rem; line-height: 1.7; margin-bottom: 25px; 
+            color: #ffffff; font-weight: 700;
+            text-shadow: 1px 1px 5px rgba(0,0,0,1);
         }
 
         .btn-blue {
             background: linear-gradient(45deg, #00d2ff, #3a7bd5);
-            color: white; border: none; padding: 15px 45px;
-            border-radius: 15px; font-size: 1.1rem; font-weight: 800; cursor: pointer;
-            transition: 0.4s; box-shadow: 0 10px 25px rgba(0, 210, 255, 0.3);
+            color: white; border: none; padding: 16px 45px;
+            border-radius: 50px; font-size: 1.2rem; font-weight: 900; cursor: pointer;
+            transition: 0.4s; box-shadow: 0 10px 25px rgba(0, 210, 255, 0.4);
+            margin-top: 15px;
         }
-        .btn-blue:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0, 210, 255, 0.5); }
+        .btn-blue:hover { transform: scale(1.05); }
 
         .hidden { display: none; }
 
-        .signature { font-size: 1.1rem; color: var(--primary-blue); font-weight: 800; margin-bottom: 5px; display: block; }
-        .divider { height: 2px; width: 50px; background: var(--primary-blue); margin: 15px auto; border-radius: 2px; }
+        .signature { font-size: 1.1rem; color: #ffffff; font-weight: 800; margin-bottom: 8px; display: block; }
+        .divider { height: 3px; width: 60px; background: var(--primary-blue); margin: 15px auto; border-radius: 5px; box-shadow: 0 0 10px var(--primary-blue); }
 
-        /* أنيميشن */
-        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
         .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; animation: twinkle var(--duration) infinite; }
         @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
+
+        audio { width: 100%; border-radius: 50px; margin: 25px 0; filter: invert(1) brightness(1.8) hue-rotate(180deg); }
     </style>
 </head>
 <body>
@@ -77,10 +88,11 @@
     <div id="main-content">
         <div id="step1" class="card">
             <div class="moon-icon">🌙</div>
-            <h1>تهنئة من نوع خاص..</h1>
-            <span class="signature">بلمسة زرقاء من حسين</span>
+            <span class="nickname">إلى يرقياتي ✨</span>
+            <h1>معايدة عيدية خاصة..</h1>
+            <span class="signature">بلمسة من حسين</span>
             <div class="divider"></div>
-            <button class="btn-blue" onclick="startExperience()">اكتشف المفاجأة</button>
+            <button class="btn-blue" onclick="startExperience()">اكتشفي المفاجأة</button>
         </div>
 
         <div id="step2" class="card hidden">
@@ -90,18 +102,19 @@
         </div>
 
         <div id="step3" class="card hidden">
+            <span class="nickname">إلى يرقياتي ✨</span>
             <h1>هدوء وموسيقى لقلبك 🎧</h1>
             <audio id="bgMusic" controls>
-                <source src="blue-song.mp3" type="audio/mpeg">
+                <source src="song.mp3" type="audio/mpeg">
             </audio>
-            <span class="signature">من حسين</span>
+            <span class="signature">بلمسة من حسين</span>
             <div class="divider"></div>
-            <button class="btn-blue" onclick="location.reload()" style="background: rgba(255,255,255,0.1); font-size: 0.9rem;">إعادة العرض</button>
+            <button class="btn-blue" onclick="location.reload()" style="background: rgba(255,255,255,0.15); font-size: 0.9rem;">إعادة العرض</button>
         </div>
     </div>
 
     <script>
-        const message = "عيد فطر مبارك.. أتمنى أن تكون أيامك هادئة وجميلة مثل لونك المفضل. كل عام وأنت بألف خير، يا رب تكون دائماً في أعلى المراتب وبكل سعادة وراحة بال. 💙";
+        const message = "عيد فطر مبارك.. أتمنى أن تكون أيامكِ هادئة وجميلة مثل لونكِ المفضل. كل عام وأنتِ بألف خير، يا رب تكونين دائماً في أعلى المراتب وبكل سعادة وراحة بال. 💙";
         let charIndex = 0;
 
         function startExperience() {
@@ -115,7 +128,7 @@
             if (charIndex < message.length) {
                 display.innerHTML += message.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeWriter, 60);
+                setTimeout(typeWriter, 65);
             } else {
                 triggerBlueConfetti();
                 document.getElementById("nextBtn").classList.remove('hidden');
@@ -129,24 +142,22 @@
             triggerBlueConfetti();
         }
 
-        // احتفالية باللون الأزرق والأبيض
         function triggerBlueConfetti() {
             var duration = 4 * 1000;
             var end = Date.now() + duration;
             (function frame() {
-              confetti({ particleCount: 5, angle: 60, spread: 60, origin: { x: 0 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
-              confetti({ particleCount: 5, angle: 120, spread: 60, origin: { x: 1 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
+              confetti({ particleCount: 5, angle: 60, spread: 65, origin: { x: 0 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
+              confetti({ particleCount: 5, angle: 120, spread: 65, origin: { x: 1 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
               if (Date.now() < end) requestAnimationFrame(frame);
             }());
         }
 
-        // إنشاء النجوم في الخلفية
         function initStars() {
             const container = document.getElementById('stars-container');
             for (let i = 0; i < 150; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
-                const size = Math.random() * 3 + 'px';
+                const size = (Math.random() * 3 + 1) + 'px';
                 star.style.width = size;
                 star.style.height = size;
                 star.style.top = Math.random() * 100 + 'vh';
