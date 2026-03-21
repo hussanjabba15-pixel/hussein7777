@@ -23,25 +23,26 @@
         #stars-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
 
         .card {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border: 2px solid rgba(0, 210, 255, 0.3); 
-            padding: 45px 30px;
+            padding: 40px 25px;
             border-radius: 40px; width: 85%; max-width: 400px; text-align: center;
             box-shadow: 0 0 50px rgba(0, 210, 255, 0.2);
-            animation: slideUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation: slideUp 0.8s ease-out;
+            position: relative;
+            z-index: 10;
         }
 
-        .moon-icon { font-size: 80px; margin-bottom: 20px; filter: drop-shadow(0 0 20px var(--primary-blue)); animation: float 3s ease-in-out infinite; }
+        .moon-icon { font-size: 70px; margin-bottom: 15px; filter: drop-shadow(0 0 20px var(--primary-blue)); animation: float 3s ease-in-out infinite; }
         
         h1 { 
-            font-size: 1.8rem; margin-bottom: 15px; 
+            font-size: 1.6rem; margin-bottom: 15px; 
             color: #ffffff; font-weight: 900;
             text-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
-        /* تنسيق كلمة يرقياتي */
         .nickname {
             font-size: 1.6rem;
             color: var(--primary-blue);
@@ -49,36 +50,37 @@
             display: block;
             margin-bottom: 10px;
             text-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
-            letter-spacing: 1px;
         }
 
         p { 
-            font-size: 1.3rem; line-height: 1.7; margin-bottom: 25px; 
+            font-size: 1.2rem; line-height: 1.8; margin-bottom: 20px; 
             color: #ffffff; font-weight: 700;
-            text-shadow: 1px 1px 5px rgba(0,0,0,1);
+            white-space: pre-line; /* للحفاظ على تنسيق أبيات الشعر */
+            text-shadow: 1px 1px 3px rgba(0,0,0,1);
         }
 
         .btn-blue {
             background: linear-gradient(45deg, #00d2ff, #3a7bd5);
-            color: white; border: none; padding: 16px 45px;
-            border-radius: 50px; font-size: 1.2rem; font-weight: 900; cursor: pointer;
-            transition: 0.4s; box-shadow: 0 10px 25px rgba(0, 210, 255, 0.4);
-            margin-top: 15px;
+            color: white; border: none; padding: 16px 30px;
+            border-radius: 50px; font-size: 1.1rem; font-weight: 900; cursor: pointer;
+            transition: 0.3s; box-shadow: 0 10px 20px rgba(0, 210, 255, 0.4);
+            margin-top: 10px;
+            display: inline-block;
         }
         .btn-blue:hover { transform: scale(1.05); }
 
-        .hidden { display: none; }
+        .hidden { display: none !important; }
 
         .signature { font-size: 1.1rem; color: #ffffff; font-weight: 800; margin-bottom: 8px; display: block; }
         .divider { height: 3px; width: 60px; background: var(--primary-blue); margin: 15px auto; border-radius: 5px; box-shadow: 0 0 10px var(--primary-blue); }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
         .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; animation: twinkle var(--duration) infinite; }
         @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
 
-        audio { width: 100%; border-radius: 50px; margin: 25px 0; filter: invert(1) brightness(1.8) hue-rotate(180deg); }
+        audio { width: 100%; border-radius: 50px; margin: 20px 0; filter: invert(1) brightness(1.5) hue-rotate(180deg); }
     </style>
 </head>
 <body>
@@ -98,42 +100,44 @@
         <div id="step2" class="card hidden">
             <h1>عيد مبارك وسعيد ✨</h1>
             <p id="typewriter"></p>
-            <button id="nextBtn" class="btn-blue hidden" onclick="showMusicPage()">اضغطي هنا حتى تسمعين الاغنية 🎵</button>
+            <button id="nextBtn" class="btn-blue hidden" onclick="showMusicPage()">اضغطي هنا لسماع الأغنية 🎵</button>
         </div>
 
         <div id="step3" class="card hidden">
             <span class="nickname">إلى يرقياتي ✨</span>
-            <h1> اهداء من حسين لاحلا رقيه بالحياة </h1>
+            <h1>إهداء من حسين لأحلى رقية بالحياة</h1>
             <audio id="bgMusic" controls>
                 <source src="song.mp3" type="audio/mpeg">
             </audio>
             <span class="signature">بلمسة من حسين</span>
             <div class="divider"></div>
-            <button class="btn-blue" onclick="location.reload()" style="background: rgba(255,255,255,0.15); font-size: 0.9rem;">إعادة العرض</button>
+            <button class="btn-blue" onclick="location.reload()" style="background: rgba(255,255,255,0.2); font-size: 0.9rem;">إعادة العرض</button>
         </div>
     </div>
 
     <script>
-        const message = "وَما العِيد إِلا رَبِيعٌ أَنتِ زَهرَته
+        const message = `وَما العِيد إِلا رَبِيعٌ أَنتِ زَهرَته
 وَأَنتِ فِيه النَسيم واَلنَهر وَالَشَجَر
 مَا العِيد إِلا سَمَاء أنتِ نجمَته
 وَأَنتِ فِيهِ اَلهلاَل و الغَيم واَلمَطَر
 
-رقيتي كل عام وانتِ بالف الف خير ان شاء الله ينعاد عليج بالصحه والسلامه واشوفج باعلى المراتب يا احلى بنيه شافتها عيوني 🩵";
+رقيتي كل عام وانتِ بالف الف خير ان شاء الله ينعاد عليج بالصحه والسلامه واشوفج باعلى المراتب يا احلى بنيه شافتها عيوني 🩵`;
+
         let charIndex = 0;
 
         function startExperience() {
             document.getElementById('step1').classList.add('hidden');
-            document.getElementById('step2').classList.remove('hidden');
+            const s2 = document.getElementById('step2');
+            s2.classList.remove('hidden');
             typeWriter();
         }
 
         function typeWriter() {
             const display = document.getElementById("typewriter");
             if (charIndex < message.length) {
-                display.innerHTML += message.charAt(charIndex);
+                display.innerText += message.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeWriter, 65);
+                setTimeout(typeWriter, 50); // سرعة الكتابة
             } else {
                 triggerBlueConfetti();
                 document.getElementById("nextBtn").classList.remove('hidden');
@@ -141,18 +145,27 @@
         }
 
         function showMusicPage() {
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step3').classList.remove('hidden');
-            document.getElementById('bgMusic').play();
-            triggerBlueConfetti();
+            const s2 = document.getElementById('step2');
+            const s3 = document.getElementById('step3');
+            const audio = document.getElementById('bgMusic');
+
+            if (s2 && s3) {
+                s2.classList.add('hidden');
+                s3.classList.remove('hidden');
+                
+                if (audio) {
+                    audio.play().catch(e => console.log("Audio play blocked"));
+                }
+                triggerBlueConfetti();
+            }
         }
 
         function triggerBlueConfetti() {
-            var duration = 4 * 1000;
+            var duration = 3 * 1000;
             var end = Date.now() + duration;
             (function frame() {
-              confetti({ particleCount: 5, angle: 60, spread: 65, origin: { x: 0 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
-              confetti({ particleCount: 5, angle: 120, spread: 65, origin: { x: 1 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
+              confetti({ particleCount: 5, angle: 60, spread: 60, origin: { x: 0 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
+              confetti({ particleCount: 5, angle: 120, spread: 60, origin: { x: 1 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
               if (Date.now() < end) requestAnimationFrame(frame);
             }());
         }
@@ -171,7 +184,8 @@
                 container.appendChild(star);
             }
         }
-        initStars();
+        
+        window.onload = initStars;
     </script>
 </body>
 </html>
