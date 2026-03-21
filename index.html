@@ -2,90 +2,145 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>إلى يرقياتي | من حسين</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root { --primary-blue: #00d2ff; --accent-blue: #3a7bd5; }
+        
+        * { box-sizing: border-box; }
+
         body {
-            margin: 0; font-family: 'Cairo', sans-serif;
-            background: #050a16;
-            background: radial-gradient(circle at center, #0a1931 0%, #02050a 100%);
-            height: 100vh; display: flex; justify-content: center; align-items: center;
-            color: white; overflow: hidden; position: relative;
+            margin: 0; 
+            font-family: 'Cairo', sans-serif;
+            background-color: #050a16 !important; /* لون أسود عميق ثابت */
+            background-image: radial-gradient(circle at center, #0a1931 0%, #02050a 100%) !important;
+            height: 100vh; 
+            width: 100vw;
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            color: white; 
+            overflow: hidden; 
+            position: relative;
         }
-        #stars-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
+
+        /* حاوية النجوم */
+        #stars-container { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 1; 
+            pointer-events: none;
+        }
+
         .card {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(25px);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 2px solid rgba(0, 210, 255, 0.3); 
-            padding: 35px 20px;
-            border-radius: 35px; width: 90%; max-width: 380px; text-align: center;
+            padding: 40px 25px;
+            border-radius: 35px; 
+            width: 90%; 
+            max-width: 400px; 
+            text-align: center;
             box-shadow: 0 0 50px rgba(0, 210, 255, 0.2);
             animation: slideUp 0.8s ease-out;
-            z-index: 10;
+            z-index: 10; /* فوق النجوم */
         }
-        .nickname { font-size: 1.5rem; color: var(--primary-blue); font-weight: 900; display: block; margin-bottom: 10px; text-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
-        h1 { font-size: 1.6rem; margin-bottom: 15px; font-weight: 900; }
+
+        .nickname { 
+            font-size: 1.8rem; 
+            color: var(--primary-blue); 
+            font-weight: 900; 
+            display: block; 
+            margin-bottom: 15px; 
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.5); 
+        }
+
+        h1 { font-size: 1.7rem; margin-bottom: 20px; font-weight: 900; }
         
-        /* هنا حل مشكلة تداخل الحروف */
         p#typewriter { 
             font-size: 1.15rem; 
             line-height: 1.8; 
-            margin-bottom: 20px; 
             color: #ffffff; 
             font-weight: 700;
-            letter-spacing: normal; /* التأكد من أن المسافات طبيعية */
-            word-spacing: 2px; /* زيادة المسافة بين الكلمات قليلاً للوضوح */
+            text-align: center;
+            min-height: 100px;
         }
 
         .btn-blue {
             background: linear-gradient(45deg, #00d2ff, #3a7bd5);
-            color: white; border: none; padding: 15px 30px;
-            border-radius: 50px; font-size: 1rem; font-weight: 900; cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3); margin-top: 10px;
+            color: white; border: none; 
+            padding: 18px 40px; 
+            border-radius: 50px; 
+            font-size: 1.1rem; 
+            font-weight: 900; 
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 210, 255, 0.4); 
+            margin-top: 10px;
+            width: 100%;
+            transition: 0.3s;
         }
+
+        .signature-label { font-size: 1.1rem; margin-bottom: 20px; color: #ccc; display: block; }
         .hidden { display: none !important; }
-        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; animation: twinkle var(--duration) infinite; }
-        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
+
+        /* ستايل النجوم */
+        .star { 
+            position: absolute; 
+            background: white; 
+            border-radius: 50%; 
+            opacity: 0.8; 
+            animation: twinkle var(--duration) infinite ease-in-out; 
+        }
+
+        @keyframes twinkle { 
+            0%, 100% { opacity: 0.3; transform: scale(1); } 
+            50% { opacity: 1; transform: scale(1.3); } 
+        }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        audio { width: 100%; border-radius: 50px; margin: 20px 0; filter: invert(1) brightness(1.5) hue-rotate(180deg); }
+        
+        audio { width: 100%; border-radius: 50px; margin: 25px 0; filter: invert(1) brightness(1.5) hue-rotate(180deg); }
     </style>
 </head>
 <body>
     <div id="stars-container"></div>
-    <div id="main-content">
+
+    <div id="main-content" style="z-index: 10; width: 100%; display: flex; justify-content: center;">
         <div id="step1" class="card">
             <span class="nickname">إلى يرقياتي ✨</span>
             <h1>معايدة خاصة..</h1>
-            <p>بلمسة من حسين</p>
+            <p class="signature-label">بلمسة من حسين</p>
             <button class="btn-blue" onclick="startExperience()">افتحي المعايدة</button>
         </div>
 
         <div id="step2" class="card hidden">
-            <h1>عيد مبارك  ✨</h1>
+            <h1>عيد مبارك وسعيد ✨</h1>
             <p id="typewriter"></p>
-            <button id="nextBtn" class="btn-blue hidden" onclick="showMusicPage()">اضغطي هنا لسماع الأغنية 🎵</button>
+            <button id="nextBtn" class="btn-blue hidden" onclick="showMusicPage()">لسماع الأغنية 🎵</button>
         </div>
 
         <div id="step3" class="card hidden">
             <span class="nickname">إلى يرقياتي ✨</span>
-            <h1>إهداء من حسين لأحلى رقية بالحياة</h1>
+            <h1 style="font-size: 1.4rem;">إهداء من حسين لأحلى رقية بالحياة</h1>
             <audio id="bgMusic" controls><source src="song.mp3" type="audio/mpeg"></audio>
+            <p class="signature-label">بلمسة من حسين</p>
             <button class="btn-blue" onclick="location.reload()">إعادة العرض</button>
         </div>
     </div>
 
     <script>
-        // مصفوفة تحتوي على الرسالة مقسمة لضمان المسافات
         const messageArray = [
             "وَما العِيد إِلا رَبِيعٌ أَنتِ زَهرَته",
             "وَأَنتِ فِيه النَسيم واَلنَهر وَالَشَجَر",
             "مَا العِيد إِلا سَمَاء أنتِ نجمَته",
             "وَأَنتِ فِيهِ اَلهلاَل و الغَيم واَلمَطَر",
-            "",
-            "رقيتي كل عام وانتِ بالف الف خير ان شاء الله ينعاد عليج بالصحه والسلامه واشوفج باعلى المراتب يا احلى بنيه شافتها عيوني 🩵"
+            " ",
+            "رقيتي كل عام وانتِ بالف خير ينعاد عليج بالصحه والسلامه واشوفج باعلى المراتب يا احلى بنيه شافتها عيوني 🩵"
         ];
 
         let lineIndex = 0;
@@ -106,10 +161,10 @@
                     charIndex++;
                     setTimeout(typeWriter, 50);
                 } else {
-                    display.innerHTML += "<br>"; // نزول سطر بعد كل بيت
+                    display.innerHTML += "<br>";
                     lineIndex++;
                     charIndex = 0;
-                    setTimeout(typeWriter, 200); // تأخير بسيط بين الأسطر
+                    setTimeout(typeWriter, 300);
                 }
             } else {
                 triggerBlueConfetti();
@@ -120,7 +175,8 @@
         function showMusicPage() {
             document.getElementById('step2').classList.add('hidden');
             document.getElementById('step3').classList.remove('hidden');
-            document.getElementById('bgMusic').play().catch(e => console.log("Play blocked"));
+            const audio = document.getElementById('bgMusic');
+            if(audio) audio.play().catch(e => console.log("Blocked"));
             triggerBlueConfetti();
         }
 
@@ -128,12 +184,15 @@
             confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
         }
 
+        // إنشاء النجوم بشكل يغطي الشاشة تماماً
         function initStars() {
             const container = document.getElementById('stars-container');
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 120; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
-                star.style.width = star.style.height = Math.random() * 3 + 'px';
+                const size = Math.random() * 2 + 1 + 'px';
+                star.style.width = size;
+                star.style.height = size;
                 star.style.top = Math.random() * 100 + 'vh';
                 star.style.left = Math.random() * 100 + 'vw';
                 star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
