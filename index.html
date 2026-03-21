@@ -7,11 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        :root { 
-            --primary-blue: #00d2ff; 
-            --accent-blue: #3a7bd5;
-        }
-        
+        :root { --primary-blue: #00d2ff; --accent-blue: #3a7bd5; }
         body {
             margin: 0; font-family: 'Cairo', sans-serif;
             background: #050a16;
@@ -19,81 +15,51 @@
             height: 100vh; display: flex; justify-content: center; align-items: center;
             color: white; overflow: hidden; position: relative;
         }
-
         #stars-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
-
         .card {
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
             border: 2px solid rgba(0, 210, 255, 0.3); 
-            padding: 40px 25px;
-            border-radius: 40px; width: 85%; max-width: 400px; text-align: center;
+            padding: 35px 20px;
+            border-radius: 35px; width: 90%; max-width: 380px; text-align: center;
             box-shadow: 0 0 50px rgba(0, 210, 255, 0.2);
             animation: slideUp 0.8s ease-out;
-            position: relative;
             z-index: 10;
         }
-
-        .moon-icon { font-size: 70px; margin-bottom: 15px; filter: drop-shadow(0 0 20px var(--primary-blue)); animation: float 3s ease-in-out infinite; }
+        .nickname { font-size: 1.5rem; color: var(--primary-blue); font-weight: 900; display: block; margin-bottom: 10px; text-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
+        h1 { font-size: 1.6rem; margin-bottom: 15px; font-weight: 900; }
         
-        h1 { 
-            font-size: 1.6rem; margin-bottom: 15px; 
-            color: #ffffff; font-weight: 900;
-            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-
-        .nickname {
-            font-size: 1.6rem;
-            color: var(--primary-blue);
-            font-weight: 900;
-            display: block;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
-        }
-
-        p { 
-            font-size: 1.2rem; line-height: 1.8; margin-bottom: 20px; 
-            color: #ffffff; font-weight: 700;
-            white-space: pre-line; /* للحفاظ على تنسيق أبيات الشعر */
-            text-shadow: 1px 1px 3px rgba(0,0,0,1);
+        /* هنا حل مشكلة تداخل الحروف */
+        p#typewriter { 
+            font-size: 1.15rem; 
+            line-height: 1.8; 
+            margin-bottom: 20px; 
+            color: #ffffff; 
+            font-weight: 700;
+            letter-spacing: normal; /* التأكد من أن المسافات طبيعية */
+            word-spacing: 2px; /* زيادة المسافة بين الكلمات قليلاً للوضوح */
         }
 
         .btn-blue {
             background: linear-gradient(45deg, #00d2ff, #3a7bd5);
-            color: white; border: none; padding: 16px 30px;
-            border-radius: 50px; font-size: 1.1rem; font-weight: 900; cursor: pointer;
-            transition: 0.3s; box-shadow: 0 10px 20px rgba(0, 210, 255, 0.4);
-            margin-top: 10px;
-            display: inline-block;
+            color: white; border: none; padding: 15px 30px;
+            border-radius: 50px; font-size: 1rem; font-weight: 900; cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3); margin-top: 10px;
         }
-        .btn-blue:hover { transform: scale(1.05); }
-
         .hidden { display: none !important; }
-
-        .signature { font-size: 1.1rem; color: #ffffff; font-weight: 800; margin-bottom: 8px; display: block; }
-        .divider { height: 3px; width: 60px; background: var(--primary-blue); margin: 15px auto; border-radius: 5px; box-shadow: 0 0 10px var(--primary-blue); }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
         .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; animation: twinkle var(--duration) infinite; }
         @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
-
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         audio { width: 100%; border-radius: 50px; margin: 20px 0; filter: invert(1) brightness(1.5) hue-rotate(180deg); }
     </style>
 </head>
 <body>
-
     <div id="stars-container"></div>
-
     <div id="main-content">
         <div id="step1" class="card">
-            <div class="moon-icon">🌙</div>
             <span class="nickname">إلى يرقياتي ✨</span>
             <h1>معايدة خاصة..</h1>
-            <span class="signature">بلمسة من حسين</span>
-            <div class="divider"></div>
+            <p>بلمسة من حسين</p>
             <button class="btn-blue" onclick="startExperience()">اكتشفي المفاجأة</button>
         </div>
 
@@ -106,38 +72,45 @@
         <div id="step3" class="card hidden">
             <span class="nickname">إلى يرقياتي ✨</span>
             <h1>إهداء من حسين لأحلى رقية بالحياة</h1>
-            <audio id="bgMusic" controls>
-                <source src="song.mp3" type="audio/mpeg">
-            </audio>
-            <span class="signature">بلمسة من حسين</span>
-            <div class="divider"></div>
-            <button class="btn-blue" onclick="location.reload()" style="background: rgba(255,255,255,0.2); font-size: 0.9rem;">إعادة العرض</button>
+            <audio id="bgMusic" controls><source src="song.mp3" type="audio/mpeg"></audio>
+            <button class="btn-blue" onclick="location.reload()">إعادة العرض</button>
         </div>
     </div>
 
     <script>
-        const message = `وَما العِيد إِلا رَبِيعٌ أَنتِ زَهرَته
-وَأَنتِ فِيه النَسيم واَلنَهر وَالَشَجَر
-مَا العِيد إِلا سَمَاء أنتِ نجمَته
-وَأَنتِ فِيهِ اَلهلاَل و الغَيم واَلمَطَر
+        // مصفوفة تحتوي على الرسالة مقسمة لضمان المسافات
+        const messageArray = [
+            "وَما العِيد إِلا رَبِيعٌ أَنتِ زَهرَته",
+            "وَأَنتِ فِيه النَسيم واَلنَهر وَالَشَجَر",
+            "مَا العِيد إِلا سَمَاء أنتِ نجمَته",
+            "وَأَنتِ فِيهِ اَلهلاَل و الغَيم واَلمَطَر",
+            "",
+            "رقيتي كل عام وانتِ بالف الف خير ان شاء الله ينعاد عليج بالصحه والسلامه واشوفج باعلى المراتب يا احلى بنيه شافتها عيوني 🩵"
+        ];
 
-رقيتي كل عام وانتِ بالف الف خير ان شاء الله ينعاد عليج بالصحه والسلامه واشوفج باعلى المراتب يا احلى بنيه شافتها عيوني 🩵`;
-
+        let lineIndex = 0;
         let charIndex = 0;
+        const display = document.getElementById("typewriter");
 
         function startExperience() {
             document.getElementById('step1').classList.add('hidden');
-            const s2 = document.getElementById('step2');
-            s2.classList.remove('hidden');
+            document.getElementById('step2').classList.remove('hidden');
             typeWriter();
         }
 
         function typeWriter() {
-            const display = document.getElementById("typewriter");
-            if (charIndex < message.length) {
-                display.innerText += message.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, 50); // سرعة الكتابة
+            if (lineIndex < messageArray.length) {
+                let currentLine = messageArray[lineIndex];
+                if (charIndex < currentLine.length) {
+                    display.innerHTML += currentLine.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 50);
+                } else {
+                    display.innerHTML += "<br>"; // نزول سطر بعد كل بيت
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriter, 200); // تأخير بسيط بين الأسطر
+                }
             } else {
                 triggerBlueConfetti();
                 document.getElementById("nextBtn").classList.remove('hidden');
@@ -145,47 +118,29 @@
         }
 
         function showMusicPage() {
-            const s2 = document.getElementById('step2');
-            const s3 = document.getElementById('step3');
-            const audio = document.getElementById('bgMusic');
-
-            if (s2 && s3) {
-                s2.classList.add('hidden');
-                s3.classList.remove('hidden');
-                
-                if (audio) {
-                    audio.play().catch(e => console.log("Audio play blocked"));
-                }
-                triggerBlueConfetti();
-            }
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+            document.getElementById('bgMusic').play().catch(e => console.log("Play blocked"));
+            triggerBlueConfetti();
         }
 
         function triggerBlueConfetti() {
-            var duration = 3 * 1000;
-            var end = Date.now() + duration;
-            (function frame() {
-              confetti({ particleCount: 5, angle: 60, spread: 60, origin: { x: 0 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
-              confetti({ particleCount: 5, angle: 120, spread: 60, origin: { x: 1 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
-              if (Date.now() < end) requestAnimationFrame(frame);
-            }());
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#00d2ff', '#ffffff', '#3a7bd5'] });
         }
 
         function initStars() {
             const container = document.getElementById('stars-container');
-            for (let i = 0; i < 150; i++) {
+            for (let i = 0; i < 100; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
-                const size = (Math.random() * 3 + 1) + 'px';
-                star.style.width = size;
-                star.style.height = size;
+                star.style.width = star.style.height = Math.random() * 3 + 'px';
                 star.style.top = Math.random() * 100 + 'vh';
                 star.style.left = Math.random() * 100 + 'vw';
                 star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
                 container.appendChild(star);
             }
         }
-        
-        window.onload = initStars;
+        initStars();
     </script>
 </body>
 </html>
