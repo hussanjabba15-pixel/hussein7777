@@ -89,7 +89,7 @@
         <div id="step1" class="card">
             <div class="moon-icon">🌙</div>
             <span class="nickname">إلى يرقياتي ✨</span>
-            <h1>معايدة عيدية خاصة..</h1>
+            <h1>معايدة خاصة..</h1>
             <span class="signature">بلمسة من حسين</span>
             <div class="divider"></div>
             <button class="btn-blue" onclick="startExperience()">اكتشفي المفاجأة</button>
@@ -98,12 +98,12 @@
         <div id="step2" class="card hidden">
             <h1>عيد مبارك وسعيد ✨</h1>
             <p id="typewriter"></p>
-            <button id="nextBtn" class="btn-blue hidden" onclick="showMusicPage()">لحن العيد 🎵</button>
+            <button id="nextBtn" class="btn-blue hidden" onclick="showMusicPage()">اضغطي هنا حتى تسمعين الاغنية 🎵</button>
         </div>
 
         <div id="step3" class="card hidden">
             <span class="nickname">إلى يرقياتي ✨</span>
-            <h1>هدوء وموسيقى لقلبك 🎧</h1>
+            <h1> اهداء من حسين لاحلا رقيه بالحياة </h1>
             <audio id="bgMusic" controls>
                 <source src="song.mp3" type="audio/mpeg">
             </audio>
@@ -114,7 +114,12 @@
     </div>
 
     <script>
-        const message = "عيد فطر مبارك.. أتمنى أن تكون أيامكِ هادئة وجميلة مثل لونكِ المفضل. كل عام وأنتِ بألف خير، يا رب تكونين دائماً في أعلى المراتب وبكل سعادة وراحة بال. 💙";
+        const message = "وَما العِيد إِلا رَبِيعٌ أَنتِ زَهرَته
+وَأَنتِ فِيه النَسيم واَلنَهر وَالَشَجَر
+مَا العِيد إِلا سَمَاء أنتِ نجمَته
+وَأَنتِ فِيهِ اَلهلاَل و الغَيم واَلمَطَر
+
+رقيتي كل عام وانتِ بالف الف خير ان شاء الله ينعاد عليج بالصحه والسلامه واشوفج باعلى المراتب يا احلى بنيه شافتها عيوني 🩵";
         let charIndex = 0;
 
         function startExperience() {
